@@ -4,6 +4,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,23 +15,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 //import jakarta.servlet.http.HttpServletRequest;
 
-@Controller
-public class BlogController {
-    private final List<Blog> blogs;
+@Controller // IOC(Inversion of Container)= it is simple a container who create and maintain spring bean .
+@RequiredArgsConstructor
+public class BlogController {// Bean Factory= Interface who help IOC to create and miantain the spring bean.
 
-    public BlogController() {
-        blogs = new ArrayList<>();
-    }
+//    @Autowired//( Setter Base Dependency Injection)
+//    public void setBlogService(BlogService blogService) {
+//        this.blogService = blogService;
+//    }
 
+    //@Autowired// we can define this 3 ways. Property based, setter based , and constructor base.
+    //private  BlogService blogService;//{Property Based Injection} //Bean= The object create and maintain by spring IOC container is called bean.
+    private final BlogService blogService;
+
+    //dependency injection= If we want to create a one class object by the help of another class object we called dependecy.
+    //To use the another class object to create current class object we called depnedecy injection.
     @GetMapping({"/", "blogs"})
     public String blogs(Model model) {
+        var blogs = blogService.getBlogs();
         model.addAttribute("blogs", blogs);
         return "blogs";
     }
 
     @GetMapping("/blog")
     public String blog(@RequestParam int id, Model model) {// git add.
-        var blog = blogs.get(id);
+        var blog = blogService.getBlog(id);
         model.addAttribute("blog", blog);
         return "blog"; // git commit -m "controller desing add"
     }
@@ -48,9 +58,10 @@ public class BlogController {
         // String heading= request.getParameter("heading");
         // String description= request.getParameter("description");
         //pw.println(blog);
-        blogs.add(blog);
+        blogService.addBlog(blog);
         //pw.println(description);
         return "redirect:/blogs";
+
     }
 }
 
