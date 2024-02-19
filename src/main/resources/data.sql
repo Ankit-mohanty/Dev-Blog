@@ -1,0 +1,2 @@
+--INSERT INTO `moblog` (heading, description) VALUES
+--    ('JAVA FOR NOOB','I AM THE KING');
