@@ -1,4 +1,4 @@
-package com.moblog.devblog;
+package com.moblog.devblog.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,9 @@
-package com.moblog.devblog;
+package com.moblog.devblog.service;
 
+import com.moblog.devblog.domain.Blog;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
@@ -10,7 +12,8 @@ import java.util.List;
 
 @Service// we can write @Componet, @Repository..
 @RequiredArgsConstructor
-public class BlogService {
+@Primary//if qualifer is not avilable them it checks primery by default take primery class. it is use class in class.
+public class BlogServiceTemplateImpl implements BlogService{
     // private final ArrayList<Blog> blogs;
     private final JdbcTemplate jdbcTemplate;
     @Value("${prefix}")

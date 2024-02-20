@@ -3,13 +3,14 @@ package com.moblog.devblog;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import com.moblog.devblog.service.BlogServiceTemplateImpl;
 
 @SpringBootApplication
 public class DevBlogApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(DevBlogApplication.class, args);
-        var bs = run.getBean(BlogService.class);//GraalVm
+        var bs = run.getBean(BlogServiceTemplateImpl.class);//GraalVm
     }
 }// mvnw.clean
 //mvnw.compile

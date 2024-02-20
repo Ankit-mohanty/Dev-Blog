@@ -1,5 +1,6 @@
-package com.moblog.devblog;
+package com.moblog.devblog.config;
 
+import com.moblog.devblog.domain.Blog;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
