@@ -66,8 +66,7 @@ section {
   -webkit-line-clamp: 2;
    overflow: hidden;
 }
-.blog a{
-    display: inline-block;
+.blog div{
     grid-area: link;
 }
 .justify-right{
